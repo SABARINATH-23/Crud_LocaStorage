@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Create = ()=>{
 
@@ -11,31 +11,29 @@ const Create = ()=>{
             password :""
         }
     )
-    let [key,setKey] = useState(0);
-
+    let arr = [];
     let handleinput = (e)=>{
         setUser((user)=>({
             ...user,[e.target.name]:e.target.value
         }))
+       
     }
     let handleSubmit = (e)=>{
         e.preventDefault();
-        let u1 = JSON.stringify(user)
-      localStorage.setItem("user",u1);
-        
+        localStorage.setItem(user.id,JSON.stringify(user));
     }
    
     return(
         <>
-           <form onSubmit={handleSubmit}>
-                <label>Enter Id</label>
-                <input type="tel" placeholder="Enter your ID" name = "id" onChange={handleinput}></input>
-                <label>Enter Name</label>
-                <input type="text" placeholder="Enter Your Name" name="sname" onChange={handleinput}></input>
-                <label>Enter Email</label>
-                <input type="email" placeholder="Enter Your Email" name="email" onChange={handleinput}></input>
-                <label>Enter Password</label>
-                <input type="password" placeholder="Enter Your password" name="password" onChange={handleinput}></input>
+           <form onSubmit={handleSubmit} >
+                <label htmlFor="id">Enter Id</label>
+                <input type="tel" placeholder="Enter your ID" name = "id" onChange={handleinput} id="id"></input>
+                <label htmlFor="sname">Enter Name</label>
+                <input type="text" placeholder="Enter Your Name" name="sname" onChange={handleinput} id="sname"></input>
+                <label htmlFor="email">Enter Email</label>
+                <input type="email" placeholder="Enter Your Email" name="email" onChange={handleinput} id="email" autoComplete="off"></input>
+                <label htmlFor="password">Enter Password</label>
+                <input type="password" placeholder="Enter Your password" name="password" onChange={handleinput} id="password"></input>
                 <button>Create</button>
            </form>
         </>
