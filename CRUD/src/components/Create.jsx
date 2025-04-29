@@ -9,9 +9,9 @@ const Create = ()=>{
             sname : "",
             email : "",
             password :""
-
         }
     )
+    let [key,setKey] = useState(0);
 
     let handleinput = (e)=>{
         setUser((user)=>({
@@ -21,7 +21,7 @@ const Create = ()=>{
     let handleSubmit = (e)=>{
         e.preventDefault();
         let u1 = JSON.stringify(user)
-      localStorage.setItem(u1,"user");
+      localStorage.setItem("user",u1);
         
     }
    
