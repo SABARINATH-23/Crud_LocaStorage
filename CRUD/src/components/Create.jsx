@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {useNavigate} from 'react-router-dom';
 
 const Create = ()=>{
@@ -12,7 +12,7 @@ const Create = ()=>{
             password :""
         }
     )
-    let arr = [];
+  
     let navigate =  useNavigate();
     let handleinput = (e)=>{
         setUser((user)=>({
