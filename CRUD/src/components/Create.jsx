@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {useNavigate} from 'react-router-dom';
 
 const Create = ()=>{
 
@@ -12,6 +13,7 @@ const Create = ()=>{
         }
     )
     let arr = [];
+    let navigate =  useNavigate();
     let handleinput = (e)=>{
         setUser((user)=>({
             ...user,[e.target.name]:e.target.value
@@ -21,6 +23,7 @@ const Create = ()=>{
     let handleSubmit = (e)=>{
         e.preventDefault();
         localStorage.setItem(user.id,JSON.stringify(user));
+        navigate("/")
     }
    
     return(
