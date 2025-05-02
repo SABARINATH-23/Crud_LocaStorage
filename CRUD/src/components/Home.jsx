@@ -1,14 +1,23 @@
 
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Home = ()=>{
-
+    let Navigate = useNavigate();
     let arr = [];
+    let [state,setState]  = useState();
     for(let i = 1;i<=localStorage.length;i++)
     {
         let value = localStorage.getItem(i);
         arr.push(JSON.parse(value))
     }
+   
+    let handleDelete = (del)=>{
+        setState(del);
+        localStorage.removeItem(state);
+        Navigate("/")
+    }
+
     
     return(
         <div>
@@ -34,7 +43,7 @@ const Home = ()=>{
                             <td>{ele.password}</td>
                             <td>
                             <NavLink to={`/update/${ele.id}`}><button>Update</button></NavLink> 
-                                <button>Delete</button>
+                                <button onClick={()=>handleDelete(ele.id)}>Delete</button>
                             </td>
                         </tr>
                        )})
