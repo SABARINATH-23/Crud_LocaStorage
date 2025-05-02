@@ -1,20 +1,28 @@
-
-import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Home = ()=>{
     let Navigate = useNavigate();
     let arr = [];
-    let [state,setState]  = useState();
-    for(let i = 1;i<=localStorage.length;i++)
+   
+    if(localStorage.length != 0)
     {
-        let value = localStorage.getItem(i);
-        arr.push(JSON.parse(value))
+        for(let i = 1;i<=localStorage.length;i++)
+            {
+                let value = localStorage.getItem(i);
+                arr.push(JSON.parse(value))
+            }
+    }
+    else
+    {
+        return(
+        <>
+            <p>please Insert an Data </p>
+        </>)
     }
    
     let handleDelete = (del)=>{
-        setState(del);
-        localStorage.removeItem(state);
+       
+        localStorage.removeItem(del);
         Navigate("/")
     }
 
